@@ -28,7 +28,7 @@
     "all": true
   },
   "scripts": {
-    "start": "nodemon app/server.js --exec babel-node --presets es2015,stage-2",
+    "start": "nodemon app/index.js --exec babel-node --presets es2015,stage-2",
     "babel-build": "babel app -d dist",
     "serve": "node build/backend.js",
     "test": "nyc mocha",
@@ -37,7 +37,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
