@@ -36,7 +36,9 @@ export default class App {
 
   // connect resource routers
   routes() {
+    const indexRouter = new IndexRouter('/')
+
     // attach it to our express app
-    this.express.use(IndexRouter.path, IndexRouter.router)
+    this.express.use(indexRouter.path, indexRouter.router)
   }
 }

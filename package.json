@@ -32,7 +32,7 @@
     "babel-build": "babel app -d dist",
     "serve": "node build/backend.js",
     "test": "nyc mocha",
-    "build": "webpack"
+    "build": "export NODE_ENV=production || SET NODE_ENV=production && webpack"
   },
   "author": "",
   "license": "ISC",
@@ -42,6 +42,8 @@
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.1",
+    "mongodb": "^3.0.2",
+    "mongoose": "^5.0.3",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
