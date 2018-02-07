@@ -2,7 +2,9 @@
   "name": "nodejs-boilerplate",
   "version": "1.0.0",
   "description": "nodejs boilerplate with, Express, mocha, chia, istanbul, webpack, nodemon, eslint, babel",
-  "main": "app/server.js",
+  "main": "app/index.js",
+  "author": "Ronni H. Baslund",
+  "license": "MIT",
   "nyc": {
     "check-coverage": true,
     "per-file": true,
@@ -31,11 +33,10 @@
     "start": "nodemon app/index.js --exec babel-node --presets es2015,stage-2",
     "babel-build": "babel app -d dist",
     "serve": "node build/backend.js",
-    "test": "nyc mocha",
-    "build": "export NODE_ENV=production || SET NODE_ENV=production && webpack"
+    "unit": "nyc mocha",
+    "build": "export NODE_ENV=production || SET NODE_ENV=production && webpack",
+    "seed": "export NODE_ENV=development || SET NODE_ENV=development && babel-node seed.js --presets es2015,stage-2"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",

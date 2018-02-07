@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
   },
   permission: {
     type: String,
-    required: true,
+    required: false,
     minlength: 1,
     trim: true
   }
