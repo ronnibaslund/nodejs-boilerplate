@@ -2,6 +2,7 @@ import * as http from 'http'
 import debug from 'debug'
 import App from './app'
 import './config/config'
+import './db/mongoose'
 
 const logger = debug('creditro-node-api:startup')
 const app = new App()

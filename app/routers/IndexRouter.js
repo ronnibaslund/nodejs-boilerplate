@@ -2,6 +2,7 @@ import { Router }  from 'express'
 import permit from '../util/permission' // middleware for checking if user's role is permitted to make request
 
 import WelcomeController from '../controllers/WelcomeController'
+import AuthController from '../controllers/AuthController'
 
 export default class IndexRouter {
   // take the mount path as the constructor argument
@@ -18,6 +19,7 @@ export default class IndexRouter {
    */
   init() {
     this.router.get('/', WelcomeController.welcome)
+    this.router.post('/authenticate', AuthController.authenticate)
     this.router.get('/protected', permit(['admin', 'test']), WelcomeController.welcome)
   }
 }
