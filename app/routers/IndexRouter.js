@@ -20,6 +20,6 @@ export default class IndexRouter {
   init() {
     this.router.get('/', WelcomeController.welcome)
     this.router.post('/authenticate', AuthController.authenticate)
-    this.router.get('/protected', permit(['admin', 'test']), WelcomeController.welcome)
+    this.router.get('/protected', permit(['ADMIN', 'test']), WelcomeController.welcome)
   }
 }
