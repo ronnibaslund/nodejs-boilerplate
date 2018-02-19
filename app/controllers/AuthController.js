@@ -9,15 +9,18 @@ class AuthController extends BaseController {
   }
 
   async authenticate(req, res) {
+    console.log(req.body)
     let user = await UserService.fetchByEmail(req.body.username)
     
+    console.log(user)
+
     if (!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
+      res.json({ success: false, message: 'Authentication failed. User not found.' })
     } else {
       console.log('her')
       // check if password matches
       if (user.password != req.body.password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        res.json({ success: false, message: 'Authentication failed. Wrong password.' })
       }
 
       // if user is found and password is right
@@ -31,7 +34,7 @@ class AuthController extends BaseController {
       
       let token = await jwt.sign(payload, process.env.jwtSignature, {
         expiresIn: '1 day' // expires in 24 hours
-      });
+      })
 
       // return the information including token as JSON
       res.json({

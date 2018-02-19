@@ -18,6 +18,7 @@ export default class App {
     // authenticate each request
     // will set `request.user`
     this.express.use(authenticate)
+    //this.express.use(/^(\/authenticate.+|(?!\/).*)$/, authenticate)
 
     this.express.use(morgan('dev'))
     this.express.use(bodyParser.json())
