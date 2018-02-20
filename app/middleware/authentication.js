@@ -4,7 +4,7 @@ const jwtSignature = process.env.jwtSignature
 
 // middleware for authentication
 export default async function authorize(req, res, next) {
-  if(req.originalUrl === '/authenticate') {
+  if(req.originalUrl === '/authenticate' || req.originalUrl === '/register') {
     next()
   } else {  
     try {

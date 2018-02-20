@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken' // used to create, sign, and verify tokens
 import BaseController from './BaseController'
 import UserService from '../services/UserService'
+import bcrypt from 'bcrypt'
 
 
 class AuthController extends BaseController {
@@ -9,17 +10,13 @@ class AuthController extends BaseController {
   }
 
   async authenticate(req, res) {
-    console.log(req.body)
     let user = await UserService.fetchByEmail(req.body.username)
-    
-    console.log(user)
 
     if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found.' })
     } else {
-      console.log('her')
       // check if password matches
-      if (user.password != req.body.password) {
+      if (!bcrypt.compare(req.body.password, user.password)) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' })
       }
 
@@ -41,9 +38,30 @@ class AuthController extends BaseController {
         success: true,
         message: 'Authentication success',
         token: token
-      });
+      })
     }
   }
+
+  async registerUser(req, res) {
+    console.log(req.body)
+
+    let user = {
+      name: req.body.name,
+      email: req.body.email,
+      password: await bcrypt.hash(req.body.password, 5)
+    }
+
+    UserService.create(user)
+
+    // TODO: implement email to activate account
+
+    // return the information including token as JSON
+    res.json({
+      success: true,
+      message: 'registration successful',
+    })
+  }
+  
 }
 
 export default new AuthController()
